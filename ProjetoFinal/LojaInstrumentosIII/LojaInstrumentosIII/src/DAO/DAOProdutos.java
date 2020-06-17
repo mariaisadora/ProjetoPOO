@@ -1,20 +1,18 @@
-
 package DAO;
 
 import conexoes.ConexaoMySql;
 import java.util.ArrayList;
 import model.ModelProdutos;
 
-
-public class DaoProdutos extends ConexaoMySql {
+public class DAOProdutos extends ConexaoMySql implements DAO<ModelProdutos> {
 
     /**
      * Cadastrar um produto no banco
      *
-     * @param pModelProdutos
+     * @param entidade
      * @return
      */
-    public int salvarProdutosDAO(ModelProdutos pModelProdutos) {
+    public int salvar(ModelProdutos entidade) {
         try {
             this.conectar();
             return this.insertSQL("INSERT INTO tbl_produto ("
@@ -22,9 +20,9 @@ public class DaoProdutos extends ConexaoMySql {
                     + "pro_valor,"
                     + "pro_estoque"
                     + ") VALUES ("
-                    + "'" + pModelProdutos.getProNome() + "',"
-                    + "'" + pModelProdutos.getProValor() + "',"
-                    + "'" + pModelProdutos.getProEstoque() + "'"
+                    + "'" + entidade.getProNome() + "',"
+                    + "'" + entidade.getProValor() + "',"
+                    + "'" + entidade.getProEstoque() + "'"
                     + ");"
             );
         } catch (Exception e) {
@@ -38,14 +36,14 @@ public class DaoProdutos extends ConexaoMySql {
     /**
      * Excluir um produto do banco
      *
-     * @param pIdProduto
+     * @param id
      * @return boolean
      */
-    public boolean excluirProdutoDAO(int pIdProduto) {
+    public boolean excluir(int id) {
         try {
             this.conectar();
             return this.executarUpdateDeleteSQL(
-                    "DELETE FROM tbl_produto WHERE pk_id_produto = '" + pIdProduto + "'"
+                    "DELETE FROM tbl_produto WHERE pk_id_produto = '" + id + "'"
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,18 +56,18 @@ public class DaoProdutos extends ConexaoMySql {
     /**
      * Alterar dados do produtos
      *
-     * @param pModelProdutos
+     * @param entidade
      * @return boolean
      */
-    public boolean alterarProdutoDAO(ModelProdutos pModelProdutos) {
+    public boolean alterar(ModelProdutos entidade) {
         try {
             this.conectar();
             return this.executarUpdateDeleteSQL(
                     "UPDATE tbl_produto SET "
-                    + "pro_nome = '" + pModelProdutos.getProNome() + "',"
-                    + "pro_valor = '" + pModelProdutos.getProValor() + "',"
-                    + "pro_estoque = '" + pModelProdutos.getProEstoque() + "'"
-                    + " WHERE pk_id_produto = '" + pModelProdutos.getIdProduto() + "'"
+                    + "pro_nome = '" + entidade.getProNome() + "',"
+                    + "pro_valor = '" + entidade.getProValor() + "',"
+                    + "pro_estoque = '" + entidade.getProEstoque() + "'"
+                    + " WHERE pk_id_produto = '" + entidade.getIdProduto() + "'"
             );
 
         } catch (Exception e) {
@@ -84,10 +82,10 @@ public class DaoProdutos extends ConexaoMySql {
     /**
      * retornar um produto pelo codigo
      *
-     * @param pIdProduto
+     * @param id
      * @return modelproduto
      */
-    public ModelProdutos retornarProdutoDAO(int pIdProduto) {
+    public ModelProdutos recuperar(int id) {
         ModelProdutos modelProdutos = new ModelProdutos();
         try {
             this.conectar();
@@ -96,7 +94,7 @@ public class DaoProdutos extends ConexaoMySql {
                     + "pro_nome,"
                     + "pro_valor,"
                     + "pro_estoque "
-                    + "FROM tbl_produto WHERE pk_id_produto = '" + pIdProduto + "';");
+                    + "FROM tbl_produto WHERE pk_id_produto = '" + id + "';");
             while (this.getResultSet().next()) {
                 modelProdutos.setIdProduto(this.getResultSet().getInt(1));
                 modelProdutos.setProNome(this.getResultSet().getString(2));
@@ -113,12 +111,12 @@ public class DaoProdutos extends ConexaoMySql {
     }
 
     /**
-     * retornar um produto pelo codigo
+     * retornar um produto pelo nome
      *
      * @param pNomeProduto
      * @return modelproduto
      */
-    public ModelProdutos retornarProdutoDAO(String pNomeProduto) {
+    public ModelProdutos recuperar(String pNomeProduto) {
         ModelProdutos modelProdutos = new ModelProdutos();
         try {
             this.conectar();
@@ -148,7 +146,7 @@ public class DaoProdutos extends ConexaoMySql {
      *
      * @return listaModelProdutos
      */
-    public ArrayList<ModelProdutos> retornarListaProdutosDAO() {
+    public ArrayList<ModelProdutos> listar() {
         ArrayList<ModelProdutos> listaModelProdutos = new ArrayList<>();
         ModelProdutos modelProdutos = new ModelProdutos();
         try {
@@ -178,8 +176,9 @@ public class DaoProdutos extends ConexaoMySql {
 
     /**
      * Alterar estoque de produtos no banco
+     *
      * @param pListaModelProdutoses
-     * @return 
+     * @return
      */
     public boolean alterarEstoqueProdutosDAO(ArrayList<ModelProdutos> pListaModelProdutoses) {
         try {
@@ -187,7 +186,7 @@ public class DaoProdutos extends ConexaoMySql {
             for (int i = 0; i < pListaModelProdutoses.size(); i++) {
                 this.executarUpdateDeleteSQL(
                         "UPDATE tbl_produto SET "
-                        + "pro_estoque = '" + pListaModelProdutoses.get(i).getProEstoque()+ "'"
+                        + "pro_estoque = '" + pListaModelProdutoses.get(i).getProEstoque() + "'"
                         + " WHERE pk_id_produto = '" + pListaModelProdutoses.get(i).getIdProduto() + "'"
                 );
             }
@@ -199,5 +198,4 @@ public class DaoProdutos extends ConexaoMySql {
             this.fecharConexao();
         }
     }
-
 }

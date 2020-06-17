@@ -1,5 +1,3 @@
-
-
 package DAO;
 
 import conexoes.ConexaoMySql;
@@ -11,7 +9,7 @@ import model.ModelVendasProdutos;
 
 public class DAOProdutosVendasProdutos extends ConexaoMySql{
     
-   public ArrayList<ModelProdutosVendasProdutos> getListaProdutosVendasProdutosDAO(int pCodigoVenda){
+   public ArrayList<ModelProdutosVendasProdutos> listar(int pCodigoVenda){
        ArrayList<ModelProdutosVendasProdutos> listaModelProdutosVendasProdutoses = new ArrayList<>();
        ModelProdutosVendasProdutos modelProdutosVendasProdutos = new ModelProdutosVendasProdutos();
        ModelProdutos modelProdutos = new ModelProdutos();

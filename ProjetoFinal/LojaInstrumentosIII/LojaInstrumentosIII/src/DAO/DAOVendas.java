@@ -14,14 +14,14 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
 
-public class DAOVendas extends ConexaoMySql {
+public class DAOVendas extends ConexaoMySql implements DAO<ModelVendas> {
 
     /**
      * grava Vendas
      *
-     * @param pModelVendas return int
+     * @param entidade return int
      */
-    public int salvarVendasDAO(ModelVendas pModelVendas) {
+    public int salvar(ModelVendas entidade) {
         try {
             this.conectar();
             return this.insertSQL(
@@ -32,11 +32,11 @@ public class DAOVendas extends ConexaoMySql {
                     + "ven_valor_bruto,"
                     + "ven_desconto"
                     + ") VALUES ("
-                    + "'" + pModelVendas.getCliente() + "',"
-                    + "'" + pModelVendas.getVenDataVenda() + "',"
-                    + "'" + pModelVendas.getVenValorLiquido() + "',"
-                    + "'" + pModelVendas.getVenValorBruto() + "',"
-                    + "'" + pModelVendas.getVenDesconto() + "'"
+                    + "'" + entidade.getCliente() + "',"
+                    + "'" + entidade.getVenDataVenda() + "',"
+                    + "'" + entidade.getVenValorLiquido() + "',"
+                    + "'" + entidade.getVenValorBruto() + "',"
+                    + "'" + entidade.getVenDesconto() + "'"
                     + ");"
             );
         } catch (Exception e) {
@@ -50,9 +50,9 @@ public class DAOVendas extends ConexaoMySql {
     /**
      * recupera Vendas
      *
-     * @param pIdVenda return ModelVendas
+     * @param id return ModelVendas
      */
-    public ModelVendas getVendasDAO(int pIdVenda) {
+    public ModelVendas recuperar(int id) {
         ModelVendas modelVendas = new ModelVendas();
         try {
             this.conectar();
@@ -67,7 +67,7 @@ public class DAOVendas extends ConexaoMySql {
                     + " FROM"
                     + " tbl_vendas"
                     + " WHERE"
-                    + " pk_id_vendas = '" + pIdVenda + "'"
+                    + " pk_id_vendas = '" + id + "'"
                     + ";"
             );
 
@@ -90,7 +90,7 @@ public class DAOVendas extends ConexaoMySql {
     /**
      * recupera uma lista de Vendas return ArrayList
      */
-    public ArrayList<ModelVendas> getListaVendasDAO() {
+    public ArrayList<ModelVendas> listar() {
         ArrayList<ModelVendas> listamodelVendas = new ArrayList();
         ModelVendas modelVendas = new ModelVendas();
         try {
@@ -129,21 +129,21 @@ public class DAOVendas extends ConexaoMySql {
     /**
      * atualiza Vendas
      *
-     * @param pModelVendas return boolean
+     * @param entidade return boolean
      */
-    public boolean atualizarVendasDAO(ModelVendas pModelVendas) {
+    public boolean alterar(ModelVendas entidade) {
         try {
             this.conectar();
             return this.executarUpdateDeleteSQL(
                     "UPDATE tbl_vendas SET "
-                    + "pk_id_vendas = '" + pModelVendas.getIdVenda() + "',"
-                    + "fk_cliente = '" + pModelVendas.getCliente() + "',"
-                    + "ven_data_venda = '" + pModelVendas.getVenDataVenda() + "',"
-                    + "ven_valor_liquido = '" + pModelVendas.getVenValorLiquido() + "',"
-                    + "ven_valor_bruto = '" + pModelVendas.getVenValorBruto() + "',"
-                    + "ven_desconto = '" + pModelVendas.getVenDesconto() + "'"
+                    + "pk_id_vendas = '" + entidade.getIdVenda() + "',"
+                    + "fk_cliente = '" + entidade.getCliente() + "',"
+                    + "ven_data_venda = '" + entidade.getVenDataVenda() + "',"
+                    + "ven_valor_liquido = '" + entidade.getVenValorLiquido() + "',"
+                    + "ven_valor_bruto = '" + entidade.getVenValorBruto() + "',"
+                    + "ven_desconto = '" + entidade.getVenDesconto() + "'"
                     + " WHERE "
-                    + "pk_id_vendas = '" + pModelVendas.getIdVenda() + "'"
+                    + "pk_id_vendas = '" + entidade.getIdVenda() + "'"
                     + ";"
             );
         } catch (Exception e) {
@@ -157,15 +157,15 @@ public class DAOVendas extends ConexaoMySql {
     /**
      * exclui Vendas
      *
-     * @param pIdVenda return boolean
+     * @param id return boolean
      */
-    public boolean excluirVendasDAO(int pIdVenda) {
+    public boolean excluir(int id) {
         try {
             this.conectar();
             return this.executarUpdateDeleteSQL(
                     "DELETE FROM tbl_vendas "
                     + " WHERE "
-                    + "pk_id_vendas = '" + pIdVenda + "'"
+                    + "pk_id_vendas = '" + id + "'"
                     + ";"
             );
         } catch (Exception e) {
@@ -176,7 +176,7 @@ public class DAOVendas extends ConexaoMySql {
         }
     }
 
-    public boolean RelatorioVendaDAO(int codigoVenda) {
+    public boolean relatorio(int codigoVenda) {
         try {
             this.conectar();
             this.executarSQL(

@@ -14,7 +14,7 @@ public class ControllerCliente {
      * @param pModelCliente return int
      */
     public int salvarClienteController(ModelCliente pModelCliente) {
-        return this.daoCliente.salvarClienteDAO(pModelCliente);
+        return this.daoCliente.salvar(pModelCliente);
     }
 
     /**
@@ -23,7 +23,7 @@ public class ControllerCliente {
      * @param pIdCliente return ModelCliente
      */
     public ModelCliente getClienteController(int pIdCliente) {
-        return this.daoCliente.getClienteDAO(pIdCliente);
+        return this.daoCliente.recuperar(pIdCliente);
     }
 
     /**
@@ -32,7 +32,7 @@ public class ControllerCliente {
      * @param pNomeCliente return ModelCliente
      */
     public ModelCliente getClienteController(String pNomeCliente) {
-        return this.daoCliente.getClienteDAO(pNomeCliente);
+        return this.daoCliente.recuperar(pNomeCliente);
     }
 
     /**
@@ -41,7 +41,7 @@ public class ControllerCliente {
      * @param pIdCliente return ArrayList
      */
     public ArrayList<ModelCliente> getListaClienteController() {
-        return this.daoCliente.getListaClienteDAO();
+        return this.daoCliente.listar();
     }
 
     /**
@@ -50,7 +50,7 @@ public class ControllerCliente {
      * @param pModelCliente return boolean
      */
     public boolean atualizarClienteController(ModelCliente pModelCliente) {
-        return this.daoCliente.atualizarClienteDAO(pModelCliente);
+        return this.daoCliente.alterar(pModelCliente);
     }
 
     /**
@@ -59,6 +59,6 @@ public class ControllerCliente {
      * @param pIdCliente return boolean
      */
     public boolean excluirClienteController(int pIdCliente) {
-        return this.daoCliente.excluirClienteDAO(pIdCliente);
+        return this.daoCliente.excluir(pIdCliente);
     }
 }

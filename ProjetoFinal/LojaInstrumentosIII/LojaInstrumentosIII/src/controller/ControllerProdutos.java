@@ -1,12 +1,12 @@
 package controller;
 
-import DAO.DaoProdutos;
+import DAO.DAOProdutos;
 import java.util.ArrayList;
 import model.ModelProdutos;
 
 public class ControllerProdutos {
 
-    private DaoProdutos daoProdutos = new DaoProdutos();
+    private DAOProdutos daoProdutos = new DAOProdutos();
 
     /**
      * Salvar produtos controller
@@ -15,7 +15,7 @@ public class ControllerProdutos {
      * @return int
      */
     public int salvarProdutoController(ModelProdutos pModelProdutos) {
-        return this.daoProdutos.salvarProdutosDAO(pModelProdutos);
+        return this.daoProdutos.salvar(pModelProdutos);
     }
 
     /**
@@ -25,7 +25,7 @@ public class ControllerProdutos {
      * @return boolean
      */
     public boolean excluirProdutoController(int pCodigo) {
-        return this.daoProdutos.excluirProdutoDAO(pCodigo);
+        return this.daoProdutos.excluir(pCodigo);
     }
 
     /**
@@ -35,7 +35,7 @@ public class ControllerProdutos {
      * @return boolean
      */
     public boolean alterarProdutoController(ModelProdutos pModelProdutos) {
-        return this.daoProdutos.alterarProdutoDAO(pModelProdutos);
+        return this.daoProdutos.alterar(pModelProdutos);
     }
 
     /**
@@ -45,7 +45,7 @@ public class ControllerProdutos {
      * @return model produto
      */
     public ModelProdutos retornarProdutoController(int pCodigo) {
-        return this.daoProdutos.retornarProdutoDAO(pCodigo);
+        return this.daoProdutos.recuperar(pCodigo);
     }
 
     /**
@@ -55,7 +55,7 @@ public class ControllerProdutos {
      * @return model produto
      */
     public ModelProdutos retornarProdutoController(String pNomeProduto) {
-        return this.daoProdutos.retornarProdutoDAO(pNomeProduto);
+        return this.daoProdutos.recuperar(pNomeProduto);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ControllerProdutos {
      * @return lista Model produtos
      */
     public ArrayList<ModelProdutos> retornarListaProdutoController() {
-        return this.daoProdutos.retornarListaProdutosDAO();
+        return this.daoProdutos.listar();
     }
 
     /**
