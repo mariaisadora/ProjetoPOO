@@ -11,19 +11,19 @@ public class ControllerCliente {
     /**
      * grava Cliente
      *
-     * @param pModelCliente return int
+     * @param entidade return int
      */
-    public int salvarClienteController(ModelCliente pModelCliente) {
-        return this.daoCliente.salvar(pModelCliente);
+    public int salvarClienteController(ModelCliente entidade) {
+        return this.daoCliente.salvar(entidade);
     }
 
     /**
      * recupera Cliente
      *
-     * @param pIdCliente return ModelCliente
+     * @param id return ModelCliente
      */
-    public ModelCliente getClienteController(int pIdCliente) {
-        return this.daoCliente.recuperar(pIdCliente);
+    public ModelCliente getClienteController(int id) {
+        return this.daoCliente.recuperar(id);
     }
 
     /**
@@ -47,18 +47,18 @@ public class ControllerCliente {
     /**
      * atualiza Cliente
      *
-     * @param pModelCliente return boolean
+     * @param entidade return boolean
      */
-    public boolean atualizarClienteController(ModelCliente pModelCliente) {
-        return this.daoCliente.alterar(pModelCliente);
+    public boolean atualizarClienteController(ModelCliente entidade) {
+        return this.daoCliente.alterar(entidade);
     }
 
     /**
      * exclui Cliente
      *
-     * @param pIdCliente return boolean
+     * @param id return boolean
      */
-    public boolean excluirClienteController(int pIdCliente) {
-        return this.daoCliente.excluir(pIdCliente);
+    public boolean excluirClienteController(int id) {
+        return this.daoCliente.excluir(id);
     }
 }

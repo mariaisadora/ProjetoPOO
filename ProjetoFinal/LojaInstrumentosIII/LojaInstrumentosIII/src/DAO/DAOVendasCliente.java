@@ -50,14 +50,14 @@ public class DAOVendasCliente extends ConexaoMySql {
                 modelVendas.setVenValorBruto(this.getResultSet().getDouble(5));
                 modelVendas.setVenDesconto(this.getResultSet().getDouble(6));
                 //cliente
-                modelCliente.setIdCliente(this.getResultSet().getInt(7));
-                modelCliente.setCliNome(this.getResultSet().getString(8));
-                modelCliente.setCliEndereco(this.getResultSet().getString(9));
-                modelCliente.setCliBairro(this.getResultSet().getString(10));
-                modelCliente.setCliCidade(this.getResultSet().getString(11));
-                modelCliente.setCliUf(this.getResultSet().getString(12));
-                modelCliente.setCliCep(this.getResultSet().getString(13));
-                modelCliente.setCliTelefone(this.getResultSet().getString(14));
+                modelCliente.setId(this.getResultSet().getInt(7));
+                modelCliente.setNome(this.getResultSet().getString(8));
+                modelCliente.setEndereco(this.getResultSet().getString(9));
+                modelCliente.setBairro(this.getResultSet().getString(10));
+                modelCliente.setCidade(this.getResultSet().getString(11));
+                modelCliente.setUf(this.getResultSet().getString(12));
+                modelCliente.setCep(this.getResultSet().getString(13));
+                modelCliente.setTelefone(this.getResultSet().getString(14));
 
                 modelVendasCliente.setModelVendas(modelVendas);
                 modelVendasCliente.setModelCliente(modelCliente);
@@ -114,14 +114,14 @@ public class DAOVendasCliente extends ConexaoMySql {
                 modelVendas.setVenValorBruto(this.getResultSet().getDouble(5));
                 modelVendas.setVenDesconto(this.getResultSet().getDouble(6));
                 //cliente
-                modelCliente.setIdCliente(this.getResultSet().getInt(7));
-                modelCliente.setCliNome(this.getResultSet().getString(8));
-                modelCliente.setCliEndereco(this.getResultSet().getString(9));
-                modelCliente.setCliBairro(this.getResultSet().getString(10));
-                modelCliente.setCliCidade(this.getResultSet().getString(11));
-                modelCliente.setCliUf(this.getResultSet().getString(12));
-                modelCliente.setCliCep(this.getResultSet().getString(13));
-                modelCliente.setCliTelefone(this.getResultSet().getString(14));
+                modelCliente.setId(this.getResultSet().getInt(7));
+                modelCliente.setNome(this.getResultSet().getString(8));
+                modelCliente.setEndereco(this.getResultSet().getString(9));
+                modelCliente.setBairro(this.getResultSet().getString(10));
+                modelCliente.setCidade(this.getResultSet().getString(11));
+                modelCliente.setUf(this.getResultSet().getString(12));
+                modelCliente.setCep(this.getResultSet().getString(13));
+                modelCliente.setTelefone(this.getResultSet().getString(14));
 
                 modelVendasCliente.setModelVendas(modelVendas);
                 modelVendasCliente.setModelCliente(modelCliente);

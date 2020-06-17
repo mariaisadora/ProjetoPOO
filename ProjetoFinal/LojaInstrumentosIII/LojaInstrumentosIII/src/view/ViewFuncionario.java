@@ -1,24 +1,24 @@
 package view;
 
-import controller.ControllerCliente;
+import controller.ControllerFuncionario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.ModelCliente;
+import model.ModelFuncionario;
 
-public class ViewCliente extends javax.swing.JFrame {
+public class ViewFuncionario extends javax.swing.JFrame {
 
-    ControllerCliente controllerCliente = new ControllerCliente();
-    ModelCliente modelCliente = new ModelCliente();
-    ArrayList<ModelCliente> listaModelClientes = new ArrayList<>();
+    ControllerFuncionario controllerFuncionario = new ControllerFuncionario();
+    ModelFuncionario modelFuncionario = new ModelFuncionario();
+    ArrayList<ModelFuncionario> listaModelFuncionario = new ArrayList<>();
     String salvarAlterar;
 
     /**
-     * Creates new form ViewCliente
+     * Creates new form ViewFuncionario
      */
-    public ViewCliente() {
+    public ViewFuncionario() {
         initComponents();
-        carregarCliente();
+        carregarFuncionario();
         setLocationRelativeTo(null);
         this.desabilitaHabilitaCampos(false);
         this.limparCampos();
@@ -50,7 +50,7 @@ public class ViewCliente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtCliente = new javax.swing.JTable();
+        jtFuncionario = new javax.swing.JTable();
         jbCancelar = new javax.swing.JButton();
         jbNovo = new javax.swing.JButton();
         jbSalvar = new javax.swing.JButton();
@@ -60,6 +60,8 @@ public class ViewCliente extends javax.swing.JFrame {
         jlcpf = new javax.swing.JLabel();
         jtfCpf = new javax.swing.JFormattedTextField();
         jtfTelefone = new javax.swing.JFormattedTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jtfSalario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cliente");
@@ -84,19 +86,19 @@ public class ViewCliente extends javax.swing.JFrame {
 
         jLabel8.setText("Telefone:");
 
-        jtCliente.setModel(new javax.swing.table.DefaultTableModel(
+        jtFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome do Cliente", "CPF", "Cidade", "Telefone"
+                "Código", "Nome", "CPF", "Cidade", "Telefone", "Salario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -107,10 +109,10 @@ public class ViewCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jtCliente);
-        if (jtCliente.getColumnModel().getColumnCount() > 0) {
-            jtCliente.getColumnModel().getColumn(0).setMinWidth(20);
-            jtCliente.getColumnModel().getColumn(0).setPreferredWidth(20);
+        jScrollPane1.setViewportView(jtFuncionario);
+        if (jtFuncionario.getColumnModel().getColumnCount() > 0) {
+            jtFuncionario.getColumnModel().getColumn(0).setMinWidth(20);
+            jtFuncionario.getColumnModel().getColumn(0).setPreferredWidth(20);
         }
 
         jbCancelar.setText("Cancelar");
@@ -168,6 +170,8 @@ public class ViewCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jLabel9.setText("Salário:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -188,26 +192,6 @@ public class ViewCliente extends javax.swing.JFrame {
                         .addComponent(jbSalvar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcbUF, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(137, 137, 137)
-                                .addComponent(jLabel6)
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jtfTelefone)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,13 +208,33 @@ public class ViewCliente extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNome)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jlcpf)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jlcpf)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfTelefone))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel6)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel7)
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbUF, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfSalario)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -246,7 +250,10 @@ public class ViewCliente extends javax.swing.JFrame {
                     .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jtfCpf)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtfCpf)
+                        .addComponent(jLabel8)
+                        .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jlcpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -261,13 +268,13 @@ public class ViewCliente extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel9))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -297,33 +304,34 @@ public class ViewCliente extends javax.swing.JFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         // TODO add your handling code here:
         try {
-            modelCliente.setId(Integer.parseInt(this.jtfCodigo.getText()));
+            modelFuncionario.setId(Integer.parseInt(this.jtfCodigo.getText()));
         } catch (NumberFormatException e) {
         }
-        modelCliente.setNome(this.jtfNome.getText());
-        modelCliente.setCpf(this.jtfCpf.getText());
-        modelCliente.setEndereco(this.jtfEndereco.getText());
-        modelCliente.setBairro(this.jtfBairro.getText());
-        modelCliente.setCidade(this.jtfCidade.getText());
-        modelCliente.setUf(this.jcbUF.getSelectedItem().toString());
-        modelCliente.setCep(this.jtfCep.getText());
-        modelCliente.setTelefone(this.jtfTelefone.getText());
+        modelFuncionario.setNome(this.jtfNome.getText());
+        modelFuncionario.setCpf(this.jtfCpf.getText());
+        modelFuncionario.setEndereco(this.jtfEndereco.getText());
+        modelFuncionario.setBairro(this.jtfBairro.getText());
+        modelFuncionario.setCidade(this.jtfCidade.getText());
+        modelFuncionario.setUf(this.jcbUF.getSelectedItem().toString());
+        modelFuncionario.setCep(this.jtfCep.getText());
+        modelFuncionario.setTelefone(this.jtfTelefone.getText());
+        modelFuncionario.setSalario(Double.parseDouble(this.jtfSalario.getText()));
 
         if (salvarAlterar.equals("salvar")) {
-            if (controllerCliente.salvarClienteController(modelCliente) > 0) {
+            if (controllerFuncionario.salvarFuncionarioController(modelFuncionario) > 0) {
                 JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
-                //carregar os clientes na tabela 
-                carregarCliente();
+                //carregar os funcionarios na tabela 
+                carregarFuncionario();
                 this.desabilitaHabilitaCampos(false);
                 this.limparCampos();
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao salvar registro!");
             }
         } else {
-            if (controllerCliente.atualizarClienteController(modelCliente)) {
+            if (controllerFuncionario.atualizarFuncionarioController(modelFuncionario)) {
                 JOptionPane.showMessageDialog(this, "Registro alterado com sucesso!");
-                //carregar os clientes na tabela 
-                carregarCliente();
+                //carregar os Funcionarios na tabela 
+                carregarFuncionario();
                 this.desabilitaHabilitaCampos(false);
                 this.limparCampos();
             } else {
@@ -334,32 +342,33 @@ public class ViewCliente extends javax.swing.JFrame {
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
-        int linha = jtCliente.getSelectedRow();
-        int codigoCliente = (int) jtCliente.getValueAt(linha, 0);
-        if (controllerCliente.excluirClienteController(codigoCliente)) {
-            JOptionPane.showMessageDialog(this, "Cliente excluido com sucesso!");
-            this.carregarCliente();
+        int linha = jtFuncionario.getSelectedRow();
+        int codigoCliente = (int) jtFuncionario.getValueAt(linha, 0);
+        if (controllerFuncionario.excluirFuncionarioController(codigoCliente)) {
+            JOptionPane.showMessageDialog(this, "Funcionario excluido com sucesso!");
+            this.carregarFuncionario();
         } else {
-            JOptionPane.showMessageDialog(this, "Erro ao excluir o cliente!");
+            JOptionPane.showMessageDialog(this, "Erro ao excluir o funcionario!");
         }
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
-        int linha = jtCliente.getSelectedRow();
-        int codigoCliente = (int) jtCliente.getValueAt(linha, 0);
+        int linha = jtFuncionario.getSelectedRow();
+        int codigoFuncionario = (int) jtFuncionario.getValueAt(linha, 0);
         salvarAlterar = "alterar";
 
-        modelCliente = controllerCliente.getClienteController(codigoCliente);
-        jtfCodigo.setText(String.valueOf(modelCliente.getId()));
-        jtfNome.setText(modelCliente.getNome());
-        jtfCpf.setText(modelCliente.getCpf());
-        jtfEndereco.setText(modelCliente.getEndereco());
-        jtfBairro.setText(modelCliente.getBairro());
-        jtfCidade.setText(modelCliente.getCidade());
-        jcbUF.setSelectedItem(modelCliente.getUf());
-        jtfCep.setText(modelCliente.getCep());
-        jtfTelefone.setText(modelCliente.getTelefone());
+        modelFuncionario = controllerFuncionario.getFuncionarioController(codigoFuncionario);
+        jtfCodigo.setText(String.valueOf(modelFuncionario.getId()));
+        jtfNome.setText(modelFuncionario.getNome());
+        jtfCpf.setText(modelFuncionario.getCpf());
+        jtfEndereco.setText(modelFuncionario.getEndereco());
+        jtfBairro.setText(modelFuncionario.getBairro());
+        jtfCidade.setText(modelFuncionario.getCidade());
+        jcbUF.setSelectedItem(modelFuncionario.getUf());
+        jtfCep.setText(modelFuncionario.getCep());
+        jtfTelefone.setText(modelFuncionario.getTelefone());
+        jtfSalario.setText(String.valueOf(modelFuncionario.getSalario()));
         this.desabilitaHabilitaCampos(true);
 
     }//GEN-LAST:event_jbAlterarActionPerformed
@@ -401,18 +410,19 @@ public class ViewCliente extends javax.swing.JFrame {
         jtfTelefone.setText("");
     }
 
-    private void carregarCliente() {
-        listaModelClientes = controllerCliente.getListaClienteController();
-        DefaultTableModel modelo = (DefaultTableModel) jtCliente.getModel();
+    private void carregarFuncionario() {
+        listaModelFuncionario = controllerFuncionario.getListaFuncionarioController();
+        DefaultTableModel modelo = (DefaultTableModel) jtFuncionario.getModel();
         modelo.setNumRows(0);
-        int cont = listaModelClientes.size();
+        int cont = listaModelFuncionario.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
-                listaModelClientes.get(i).getId(),
-                listaModelClientes.get(i).getNome(),
-                listaModelClientes.get(i).getCpf(),
-                listaModelClientes.get(i).getCidade(),
-                listaModelClientes.get(i).getTelefone()
+                listaModelFuncionario.get(i).getId(),
+                listaModelFuncionario.get(i).getNome(),
+                listaModelFuncionario.get(i).getCpf(),
+                listaModelFuncionario.get(i).getCidade(),
+                listaModelFuncionario.get(i).getTelefone(),
+                listaModelFuncionario.get(i).getSalario()
             });
 
         }
@@ -436,20 +446,21 @@ public class ViewCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewCliente().setVisible(true);
+                new ViewFuncionario().setVisible(true);
             }
         });
     }
@@ -463,6 +474,7 @@ public class ViewCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAlterar;
@@ -472,7 +484,7 @@ public class ViewCliente extends javax.swing.JFrame {
     private javax.swing.JButton jbSalvar;
     private javax.swing.JComboBox jcbUF;
     private javax.swing.JLabel jlcpf;
-    private javax.swing.JTable jtCliente;
+    private javax.swing.JTable jtFuncionario;
     private javax.swing.JTextField jtfBairro;
     private javax.swing.JFormattedTextField jtfCep;
     private javax.swing.JTextField jtfCidade;
@@ -480,6 +492,7 @@ public class ViewCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jtfCpf;
     private javax.swing.JTextField jtfEndereco;
     private javax.swing.JTextField jtfNome;
+    private javax.swing.JTextField jtfSalario;
     private javax.swing.JFormattedTextField jtfTelefone;
     // End of variables declaration//GEN-END:variables
 }

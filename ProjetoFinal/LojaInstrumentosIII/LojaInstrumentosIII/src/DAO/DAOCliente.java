@@ -25,14 +25,14 @@ public class DAOCliente extends ConexaoMySql implements DAO<ModelCliente> {
                     + "cli_cep,"
                     + "cli_telefone"
                     + ") VALUES ("
-                    + "'" + entidade.getCliNome() + "',"
-                    + "'" + entidade.getCliCpf() + "',"
-                    + "'" + entidade.getCliEndereco() + "',"
-                    + "'" + entidade.getCliBairro() + "',"
-                    + "'" + entidade.getCliCidade() + "',"
-                    + "'" + entidade.getCliUf() + "',"
-                    + "'" + entidade.getCliCep() + "',"
-                    + "'" + entidade.getCliTelefone() + "'"
+                    + "'" + entidade.getNome() + "',"
+                    + "'" + entidade.getCpf() + "',"
+                    + "'" + entidade.getEndereco() + "',"
+                    + "'" + entidade.getBairro() + "',"
+                    + "'" + entidade.getCidade() + "',"
+                    + "'" + entidade.getUf() + "',"
+                    + "'" + entidade.getCep() + "',"
+                    + "'" + entidade.getTelefone() + "'"
                     + ");"
             );
         } catch (Exception e) {
@@ -72,15 +72,15 @@ public class DAOCliente extends ConexaoMySql implements DAO<ModelCliente> {
             );
 
             while (this.getResultSet().next()) {
-                modelCliente.setIdCliente(this.getResultSet().getInt(1));
-                modelCliente.setCliNome(this.getResultSet().getString(2));
-                modelCliente.setCliCpf(this.getResultSet().getString(3));
-                modelCliente.setCliEndereco(this.getResultSet().getString(4));
-                modelCliente.setCliBairro(this.getResultSet().getString(5));
-                modelCliente.setCliCidade(this.getResultSet().getString(7));
-                modelCliente.setCliUf(this.getResultSet().getString(7));
-                modelCliente.setCliCep(this.getResultSet().getString(8));
-                modelCliente.setCliTelefone(this.getResultSet().getString(9));
+                modelCliente.setId(this.getResultSet().getInt(1));
+                modelCliente.setNome(this.getResultSet().getString(2));
+                modelCliente.setCpf(this.getResultSet().getString(3));
+                modelCliente.setEndereco(this.getResultSet().getString(4));
+                modelCliente.setBairro(this.getResultSet().getString(5));
+                modelCliente.setCidade(this.getResultSet().getString(7));
+                modelCliente.setUf(this.getResultSet().getString(7));
+                modelCliente.setCep(this.getResultSet().getString(8));
+                modelCliente.setTelefone(this.getResultSet().getString(9));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,15 +119,15 @@ public class DAOCliente extends ConexaoMySql implements DAO<ModelCliente> {
             );
 
             while (this.getResultSet().next()) {
-                modelCliente.setIdCliente(this.getResultSet().getInt(1));
-                modelCliente.setCliNome(this.getResultSet().getString(2));
-                modelCliente.setCliCpf(this.getResultSet().getString(3));
-                modelCliente.setCliEndereco(this.getResultSet().getString(4));
-                modelCliente.setCliBairro(this.getResultSet().getString(5));
-                modelCliente.setCliCidade(this.getResultSet().getString(6));
-                modelCliente.setCliUf(this.getResultSet().getString(7));
-                modelCliente.setCliCep(this.getResultSet().getString(8));
-                modelCliente.setCliTelefone(this.getResultSet().getString(9));
+                modelCliente.setId(this.getResultSet().getInt(1));
+                modelCliente.setNome(this.getResultSet().getString(2));
+                modelCliente.setCpf(this.getResultSet().getString(3));
+                modelCliente.setEndereco(this.getResultSet().getString(4));
+                modelCliente.setBairro(this.getResultSet().getString(5));
+                modelCliente.setCidade(this.getResultSet().getString(6));
+                modelCliente.setUf(this.getResultSet().getString(7));
+                modelCliente.setCep(this.getResultSet().getString(8));
+                modelCliente.setTelefone(this.getResultSet().getString(9));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,15 +165,15 @@ public class DAOCliente extends ConexaoMySql implements DAO<ModelCliente> {
             while (this.getResultSet().next()) {
                 modelCliente = new ModelCliente() {
                 };
-                modelCliente.setIdCliente(this.getResultSet().getInt(1));
-                modelCliente.setCliNome(this.getResultSet().getString(2));
-                modelCliente.setCliCpf(this.getResultSet().getString(3));
-                modelCliente.setCliEndereco(this.getResultSet().getString(4));
-                modelCliente.setCliBairro(this.getResultSet().getString(5));
-                modelCliente.setCliCidade(this.getResultSet().getString(6));
-                modelCliente.setCliUf(this.getResultSet().getString(7));
-                modelCliente.setCliCep(this.getResultSet().getString(8));
-                modelCliente.setCliTelefone(this.getResultSet().getString(9));
+                modelCliente.setId(this.getResultSet().getInt(1));
+                modelCliente.setNome(this.getResultSet().getString(2));
+                modelCliente.setCpf(this.getResultSet().getString(3));
+                modelCliente.setEndereco(this.getResultSet().getString(4));
+                modelCliente.setBairro(this.getResultSet().getString(5));
+                modelCliente.setCidade(this.getResultSet().getString(6));
+                modelCliente.setUf(this.getResultSet().getString(7));
+                modelCliente.setCep(this.getResultSet().getString(8));
+                modelCliente.setTelefone(this.getResultSet().getString(9));
                 listamodelCliente.add(modelCliente);
             }
         } catch (Exception e) {
@@ -194,17 +194,17 @@ public class DAOCliente extends ConexaoMySql implements DAO<ModelCliente> {
             this.conectar();
             return this.executarUpdateDeleteSQL(
                     "UPDATE tbl_cliente SET "
-                    + "pk_id_cliente = '" + entidade.getIdCliente() + "',"
-                    + "cli_nome = '" + entidade.getCliNome() + "',"
-                    + "cli_cpf = '" + entidade.getCliCpf() + "',"
-                    + "cli_endereco = '" + entidade.getCliEndereco() + "',"
-                    + "cli_bairro = '" + entidade.getCliBairro() + "',"
-                    + "cli_cidade = '" + entidade.getCliCidade() + "',"
-                    + "cli_uf = '" + entidade.getCliUf() + "',"
-                    + "cli_cep = '" + entidade.getCliCep() + "',"
-                    + "cli_telefone = '" + entidade.getCliTelefone() + "'"
+                    + "pk_id_cliente = '" + entidade.getId() + "',"
+                    + "cli_nome = '" + entidade.getNome() + "',"
+                    + "cli_cpf = '" + entidade.getCpf() + "',"
+                    + "cli_endereco = '" + entidade.getEndereco() + "',"
+                    + "cli_bairro = '" + entidade.getBairro() + "',"
+                    + "cli_cidade = '" + entidade.getCidade() + "',"
+                    + "cli_uf = '" + entidade.getUf() + "',"
+                    + "cli_cep = '" + entidade.getCep() + "',"
+                    + "cli_telefone = '" + entidade.getTelefone() + "'"
                     + " WHERE "
-                    + "pk_id_cliente = '" + entidade.getIdCliente() + "'"
+                    + "pk_id_cliente = '" + entidade.getId() + "'"
                     + ";"
             );
         } catch (Exception e) {

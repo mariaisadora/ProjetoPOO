@@ -364,7 +364,7 @@ public class ViewVendas extends javax.swing.JFrame {
     private void jtfCodigoClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfCodigoClienteFocusLost
         // TODO add your handling code here:
         modelCliente = controllerCliente.getClienteController(Integer.parseInt(jtfCodigoCliente.getText()));
-        jcbNomeCliente.setSelectedItem(modelCliente.getCliNome());
+        jcbNomeCliente.setSelectedItem(modelCliente.getNome());
     }//GEN-LAST:event_jtfCodigoClienteFocusLost
 
     private void jtfCodigoProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfCodigoProdutoFocusLost
@@ -656,7 +656,7 @@ public class ViewVendas extends javax.swing.JFrame {
 
     private void preencherCodigoClientePeloCombobox() {
         modelCliente = controllerCliente.getClienteController(jcbNomeCliente.getSelectedItem().toString());
-        jtfCodigoCliente.setText(String.valueOf(modelCliente.getIdCliente()));
+        jtfCodigoCliente.setText(String.valueOf(modelCliente.getId()));
     }
 
     private void preencherCodigoProdutoPeloCombobox() {
@@ -671,7 +671,7 @@ public class ViewVendas extends javax.swing.JFrame {
         listaModelClientes = controllerCliente.getListaClienteController();
         jcbNomeCliente.removeAllItems();
         for (int i = 0; i < listaModelClientes.size(); i++) {
-            jcbNomeCliente.addItem(listaModelClientes.get(i).getCliNome());
+            jcbNomeCliente.addItem(listaModelClientes.get(i).getNome());
         }
     }
 
@@ -720,7 +720,7 @@ public class ViewVendas extends javax.swing.JFrame {
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
                 listaModelVendasClientes.get(i).getModelVendas().getIdVenda(),
-                listaModelVendasClientes.get(i).getModelCliente().getCliNome(),
+                listaModelVendasClientes.get(i).getModelCliente().getNome(),
                 listaModelVendasClientes.get(i).getModelVendas().getVenDataVenda()
             });
         }
